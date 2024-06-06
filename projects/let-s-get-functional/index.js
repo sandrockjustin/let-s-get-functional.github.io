@@ -79,12 +79,29 @@ var femaleCount = function(array){
 
 var oldestCustomer = function(array){
 
-    let oldestAge = _.reduce(array, function(previous, current){
-        if (current.age > previous){
-            console.log(previous);
-            return current.age;
+/*
+    // should be starting at index[0]
+    // if the current["age"] (age property of current object)
+    // is less than the number stored in previous["age"] (age property of previous object)
+    // then the previous object will now point to the current object
+    // each iteration should access the "age" property of the previous object
+
+    let oldest = _.reduce(array, function(previous, current){
+        if (current.age > previous.age){
+            return current;
         }
     }, 0);
+
+    return oldest.name;
+*/
+
+    let oldestAge = 0;
+
+    for (let i = 0; i < array.length; i++){
+        if (array[i]['age'] > oldestAge){
+            oldestAge = array[i]['age'];
+        }
+    }
 
     for (let i = 0; i < array.length; i++){
         if (array[i]['age'] === oldestAge){
@@ -94,7 +111,22 @@ var oldestCustomer = function(array){
 
 };
 
-var youngestCustomer;
+var youngestCustomer = function(array){
+
+    let youngestAge = 99999;
+
+    for (let i = 0; i < array.length; i++){
+        if (array[i]['age'] < youngestAge){
+            youngestAge = array[i]['age'];
+        }
+    }
+
+    for (let i = 0; i < array.length; i++){
+        if (array[i]['age'] === youngestAge){
+            return array[i]['name'];
+        }
+    }
+};
 
 var averageBalance;
 
