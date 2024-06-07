@@ -128,7 +128,20 @@ var youngestCustomer = function(array){
     }
 };
 
-var averageBalance;
+var averageBalance = function(array){
+
+    // Balance has a string value of "$####.##"
+    // we need to convert the value to a number with the +() operator
+    // but first we need to remove the $, then our code will produce the desired result
+    
+    let average = _.reduce(array, function(accum, current){
+        accum += current["balance"];
+        return accum;
+    }, 0);
+
+    return average / array.length;
+
+};
 
 var firstLetterCount;
 
