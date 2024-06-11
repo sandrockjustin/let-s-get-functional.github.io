@@ -159,11 +159,73 @@ var averageBalance = function(array){
 };
 
 
-var firstLetterCount;
+var firstLetterCount = function(array, char){
 
-var friendFirstLetterCount;
+    // initializing of count accumulator
+    let count = 0;
 
-var friendsCount;
+    // for each object in the array
+    for (let i = 0; i < array.length; i++){
+
+        // if the current object, name property, first character matches that of the char argument
+        if (array[i]['name'][0].toUpperCase() === char.toUpperCase()){
+
+            // increment our counter
+            count += 1
+        }
+
+    }
+
+    return count;
+
+};
+
+var friendFirstLetterCount = function(array, targetName, char){
+
+    // for each item in our dataset
+    for (let i = 0; i < array.length; i++){
+
+        // if the current item has a name property which matches targetName
+        if (array[i]['name'] === targetName){
+
+            return firstLetterCount(array[i]['friends'], char);
+
+        }
+
+    }
+
+};
+
+var friendsCount = function(array, targetName){
+
+    // Output will be an array as dictated in .spec
+    let output = [];
+
+    // for each person (object) in the array argument
+    for (let i = 0; i < array.length; i++){
+
+        // if that current person is not our targetName
+        if (array[i]['name'] !== targetName){
+
+            // for each person in their friends list (friends property array)
+            for (let x = 0; x < array[i]['friends'].length; x++){
+
+                // if the current person in their friends list matches the targetName
+                if (array[i]['friends'][x]['name'] === targetName){
+
+                    // push the current person (not friends list) to an output array
+                    output.push(array[i]['name']);
+
+                }
+
+            }
+
+        }
+    }
+
+    return output;
+
+};
 
 var topThreeTags;
 
