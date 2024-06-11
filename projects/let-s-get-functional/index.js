@@ -82,13 +82,15 @@ var oldestCustomer = function(array){
 /*
     // should be starting at index[0]
     // if the current["age"] (age property of current object)
-    // is less than the number stored in previous["age"] (age property of previous object)
+    // is greater than the number stored in previous["age"] (age property of previous object)
     // then the previous object will now point to the current object
     // each iteration should access the "age" property of the previous object
 
     let oldest = _.reduce(array, function(previous, current){
         if (current.age > previous.age){
             return current;
+        } else {
+            return previous;
         }
     }, 0);
 
@@ -128,20 +130,34 @@ var youngestCustomer = function(array){
     }
 };
 
+
+
 var averageBalance = function(array){
 
     // Balance has a string value of "$####.##"
     // we need to convert the value to a number with the +() operator
     // but first we need to remove the $, then our code will produce the desired result
     
-    let average = _.reduce(array, function(accum, current){
-        accum += current["balance"];
-        return accum;
-    }, 0);
+    let accumulator = 0;
 
-    return average / array.length;
-
+    for (let i = 0; i < array.length; i++){
+      let localBalance = array[i]['balance'].split("");
+      let balanceToNumber = [];
+      for (let x = 0; x < localBalance.length; x++){
+        if (localBalance[x] === "1" || localBalance[x] === "2" || localBalance[x] === "3"|| localBalance[x] === "4" || localBalance[x] === "5" || localBalance[x] === "6" || localBalance[x] === "7" || localBalance[x] === "8"|| localBalance[x] === "9" || localBalance[x] === "0" || localBalance[x] === "."){
+          balanceToNumber.push(localBalance[x])
+        }
+      }
+      
+      balanceToNumber = +(balanceToNumber.join(""));
+      accumulator += balanceToNumber
+      
+    }
+  
+  return +(accumulator.toFixed(2)) / array.length;
+    
 };
+
 
 var firstLetterCount;
 
