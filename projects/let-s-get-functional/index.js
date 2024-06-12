@@ -229,21 +229,29 @@ var friendsCount = function(array, targetName){
 
 var topThreeTags = function(array){
 
-    // we need to have an array of the top three occurring tags
-    let tagsRetainer = [];
+    // must return an array as dictated in specifications
+    let output = [];
+    let localArray = [];
 
-    // for every object in the array
-        // grab the tags and push it to the output array
-    
-    for (let i = 0; i < array.length; i++){
-        tagsRetainer.push(array[i]['tags']);
-    }
+    /*
 
-    for (let i = 0; i < tagsRetainer.length; i++){
+    for every person (object) in the array argument
+        for every tag in object['tags']
+            push tags to the localArray (not our output array)
+            this will give us a list where tags reoccur throughout
+            the localArray will contain all tags, even recurrences
 
-    }
-    // for every reoccurrence of the tag in the output array
-        // determine a count
+    for every item now in the localArray, we need to find a way to count the number of recurrences
+        if the current tag is unique
+            localArray.splice(localArray.indexOf(localArray[i]), 1)     >>>> delete that item because it won't make the cut
+        
+        else if the current tag is not unique (recurs)
+            for every recurrence of the item, increment a counter
+            maybe we can use an object here for a key-value pair
+            
+
+    */
+        
 
 };
 
