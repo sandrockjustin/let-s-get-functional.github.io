@@ -227,7 +227,25 @@ var friendsCount = function(array, targetName){
 
 };
 
-var topThreeTags;
+var topThreeTags = function(array){
+
+    // we need to have an array of the top three occurring tags
+    let tagsRetainer = [];
+
+    // for every object in the array
+        // grab the tags and push it to the output array
+    
+    for (let i = 0; i < array.length; i++){
+        tagsRetainer.push(array[i]['tags']);
+    }
+
+    for (let i = 0; i < tagsRetainer.length; i++){
+
+    }
+    // for every reoccurrence of the tag in the output array
+        // determine a count
+
+};
 
 var genderCount;
 
