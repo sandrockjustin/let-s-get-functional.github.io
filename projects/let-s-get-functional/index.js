@@ -229,33 +229,75 @@ var friendsCount = function(array, targetName){
 
 var topThreeTags = function(array){
 
-    // must return an array as dictated in specifications
-    let output = [];
     let localArray = [];
 
-    /*
-
-    for every person (object) in the array argument
-        for every tag in object['tags']
-            push tags to the localArray (not our output array)
-            this will give us a list where tags reoccur throughout
-            the localArray will contain all tags, even recurrences
-
-    for every item now in the localArray, we need to find a way to count the number of recurrences
-        if the current tag is unique
-            localArray.splice(localArray.indexOf(localArray[i]), 1)     >>>> delete that item because it won't make the cut
+    // for every person in the array
+    for (let person in array){
         
-        else if the current tag is not unique (recurs)
-            for every recurrence of the item, increment a counter
-            maybe we can use an object here for a key-value pair
-            
+        // for every tag associated with that person
+        for (let i = 0; i < array[person]['tags'].length; i++){
 
-    */
-        
+          localArray.push(array[person]['tags'][i]);
+
+        }
+
+    }
+
+    let localObject = localArray.reduce(function(output, current){
+      
+      if (output.hasOwnProperty(current)){
+        output[current] += 1;
+        return output;
+      } else {
+        output[current] = 1;
+        return output;
+      }
+      
+    }, {})
+    
+    let sortedResult = [];
+  
+    for (var tag in localObject){
+      
+      sortedResult.push([localObject[tag], tag]);
+      
+    }
+  
+    sortedResult = sortedResult.sort().slice(-3);
+  
+    let finalResult = [];
+  
+    for (let i = 0; i < sortedResult.length; i++){
+      
+      finalResult.push(sortedResult[i][1]);
+      
+    }
+  
+    return finalResult;
 
 };
 
-var genderCount;
+var genderCount = function(array){
+
+    let gendersObject = array.reduce(function(output, current){
+
+            if (output.hasOwnProperty(current.gender) === true){
+              
+              output[current.gender] = output[current.gender] + 1;
+              
+            } else {
+              
+              output[current.gender] = 1;
+              
+            }
+      
+            return output;
+
+    }, {})
+
+    return gendersObject;
+
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
